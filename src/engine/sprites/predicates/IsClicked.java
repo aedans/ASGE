@@ -1,6 +1,6 @@
 package engine.sprites.predicates;
 
-import engine.in.MouseButton;
+import engine.input.MouseButton;
 import engine.sprites.Sprite;
 import org.lwjgl.input.Mouse;
 

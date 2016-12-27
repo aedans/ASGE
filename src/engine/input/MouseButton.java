@@ -1,4 +1,4 @@
-package engine.in;
+package engine.input;
 
 /**
  * Created by Aedan Smith.

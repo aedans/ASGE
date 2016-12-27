@@ -1,6 +1,6 @@
 package engine.renderer;
 
-import engine.Logger;
+import engine.utils.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 
@@ -27,7 +27,7 @@ public class DisplayManager {
      *
      * @param xRes       The x resolution of the display.
      * @param yRes       The y resolution of the display.
-     * @param fullscreen True if the display should initialize in fullscreen.
+     * @param fullscreen True if the display should initialize input fullscreen.
      * @param title      The title of the display.
      * @throws LWJGLException If LWJGL could not initialize the display.
      */

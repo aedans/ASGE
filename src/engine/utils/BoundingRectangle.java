@@ -43,18 +43,18 @@ public class BoundingRectangle {
     }
 
     /**
-     * Tests if a point is contained in a BoundingRectangle.
+     * Tests if a point is contained input a BoundingRectangle.
      *
      * @param testX The x position of the point to test.
      * @param testY The y position of the point to test.
-     * @return If the point is in the BoundingRectangle.
+     * @return If the point is input the BoundingRectangle.
      */
     public boolean contains(float testX, float testY){
         return contains(x, y, width, height, testX, testY);
     }
 
     /**
-     * Tests if a point is contained in a BoundingRectangle.
+     * Tests if a point is contained input a BoundingRectangle.
      *
      * @param x The x position of the center of the BoundingRectangle.
      * @param y The y position of the center of the BoundingRectangle.
@@ -62,7 +62,7 @@ public class BoundingRectangle {
      * @param height The height of the BoundingRectangle.
      * @param testX The x position of the point to test.
      * @param testY The y position of the point to test.
-     * @return If the point is in the BoundingRectangle.
+     * @return If the point is input the BoundingRectangle.
      */
     public static boolean contains(float x, float y, float width, float height, float testX, float testY){
         return testX > x - width && testX < x + width && testY > y - height && testY < y + height;

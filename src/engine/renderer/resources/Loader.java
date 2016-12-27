@@ -1,6 +1,6 @@
 package engine.renderer.resources;
 
-import engine.Logger;
+import engine.utils.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -43,7 +43,7 @@ public class Loader {
      *
      * @param vertices The vertices of the model.
      * @param indices The indices of the model.
-     * @return The index at which the Model is stored in OpenGL.
+     * @return The index at which the Model is stored input OpenGL.
      */
     public static int loadToVAO(float[] vertices, int[] indices) {
         int i = Models.contains(vertices, indices);
@@ -96,7 +96,7 @@ public class Loader {
      *
      * @param extension The extension for the file to load.
      * @param fileName The name of the image to load.
-     * @return The location at which the image is stored in OpenGL.
+     * @return The location at which the image is stored input OpenGL.
      * @throws IOException If the image could not be loaded.
      */
     @SuppressWarnings("UnusedReturnValue")
@@ -124,9 +124,9 @@ public class Loader {
     }
 
     /**
-     * Stores data in a VBO.
+     * Stores data input a VBO.
      *
-     * @param attributeNumber The VBO to store the data in.
+     * @param attributeNumber The VBO to store the data input.
      * @param dataSize The size of the data.
      * @param data The data to store.
      */
@@ -150,7 +150,7 @@ public class Loader {
     /**
      * Creates an IntBuffer with the given data.
      *
-     * @param data The data to store in the IntBuffer.
+     * @param data The data to store input the IntBuffer.
      * @return The created IntBuffer.
      */
     private static IntBuffer storeDataInIntBuffer(int[] data) {
@@ -163,7 +163,7 @@ public class Loader {
     /**
      * Creates an FloatBuffer with the given data.
      *
-     * @param data The data to store in the FloatBuffer.
+     * @param data The data to store input the FloatBuffer.
      * @return The created FloatBuffer.
      */
     private static FloatBuffer storeDataInFloatBuffer(float[] data) {

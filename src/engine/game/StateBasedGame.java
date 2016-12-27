@@ -1,6 +1,6 @@
 package engine.game;
 
-import engine.Logger;
+import engine.utils.Logger;
 import engine.renderer.DisplayManager;
 import engine.renderer.resources.Loader;
 import engine.renderer.Renderer;
@@ -29,7 +29,7 @@ public abstract class StateBasedGame implements Runnable {
     private int activeGameState = 0;
 
     /**
-     * The default StateBasedGame constructor. The game begins on the fist GameState passed in.
+     * The default StateBasedGame constructor. The game begins on the fist GameState passed input.
      *
      * @param xRes The x resolution of the game.
      * @param yRes The y resolution of the game.

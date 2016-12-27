@@ -1,6 +1,6 @@
 package engine.renderer;
 
-import engine.Logger;
+import engine.utils.Logger;
 import engine.renderer.resources.TexturedModel;
 import engine.renderer.shaders.CompositeShader;
 import org.lwjgl.opengl.GL11;

@@ -1,6 +1,6 @@
 package engine.renderer.shaders;
 
-import engine.Logger;
+import engine.utils.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -24,17 +24,17 @@ public abstract class Shader {
     private static final FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
 
     /**
-     * The ID of the shader in OpenGL.
+     * The ID of the shader input OpenGL.
      */
     private final int programID;
 
     /**
-     * The ID of the Vertex shader in OpenGL.
+     * The ID of the Vertex shader input OpenGL.
      */
     private final int vertexShaderID;
 
     /**
-     * The ID of the Fragment shader in OpenGL.
+     * The ID of the Fragment shader input OpenGL.
      */
     private final int fragmentShaderID;
 
@@ -62,7 +62,7 @@ public abstract class Shader {
      *
      * @param file The shader file to load.
      * @param type The type of shader to load (GL20.GL_VERTEX_SHADER / GL20.GL_FRAGMENT_SHADER).
-     * @return The location of the shader in OpenGL.
+     * @return The location of the shader input OpenGL.
      */
     private static int loadShader(String file, int type) {
         StringBuilder shaderSource = new StringBuilder();

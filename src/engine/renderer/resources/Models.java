@@ -29,8 +29,8 @@ public class Models {
     /**
      * Adds the given model to the list of models.
      *
-     * @param vertices The list of vertices in the model.
-     * @param indices The list of indices in the model.
+     * @param vertices The list of vertices input the model.
+     * @param indices The list of indices input the model.
      */
     public static void add(float[] vertices, int[] indices){
         modelVertices.add(vertices);
@@ -41,9 +41,9 @@ public class Models {
     /**
      * Returns the index of a model loaded into OpenGL.
      *
-     * @param vertices The list of vertices in the model.
-     * @param indices The list of indices in the model.
-     * @return The position of the model in OpenGL, -1 if not yet loaded.
+     * @param vertices The list of vertices input the model.
+     * @param indices The list of indices input the model.
+     * @return The position of the model input OpenGL, -1 if not yet loaded.
      */
     public static int contains(float[] vertices, int[] indices){
         for (int i = 0; i < size; i++) {

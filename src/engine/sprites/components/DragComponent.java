@@ -1,7 +1,7 @@
 package engine.sprites.components;
 
 import engine.components.PredicateComponent;
-import engine.in.MouseButton;
+import engine.input.MouseButton;
 import engine.sprites.Sprite;
 import engine.sprites.predicates.IsHeld;
 import engine.utils.PointConverter;
