@@ -1,5 +1,6 @@
 package engine.game;
 
+import engine.renderer.resources.Textures;
 import engine.utils.Logger;
 import engine.renderer.DisplayManager;
 import engine.renderer.resources.Loader;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class StateBasedGame implements Runnable {
+public class StateBasedGame implements Runnable {
     /**
      * The List of GameStates for the StateBasedGame to use.
      */
@@ -38,7 +39,7 @@ public abstract class StateBasedGame implements Runnable {
      * @param gameStates The list of GameStates for the StateBasedGame to use.
      * @throws LWJGLException If there was an error creating the game Display.
      */
-    protected StateBasedGame(int xRes, int yRes, boolean fullscreen, String name, GameState... gameStates)
+    public StateBasedGame(int xRes, int yRes, boolean fullscreen, String name, GameState... gameStates)
             throws Exception {
         if (gameStates.length <= 0) {
             throw new RuntimeException("Cannot create StateBasedGame with 0 states.");
@@ -116,6 +117,7 @@ public abstract class StateBasedGame implements Runnable {
     protected void cleanUp(){
         Renderer.cleanUp();
         Loader.cleanUp();
+        Textures.cleanUp();
         Mouse.destroy();
         Keyboard.destroy();
         DisplayManager.closeDisplay();

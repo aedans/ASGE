@@ -83,7 +83,7 @@ public class TexturedModel {
         return new TexturedModel(
                 (topRight.x - bottomLeft.x),
                 (topRight.y - bottomLeft.y),
-                Loader.loadToVAO(
+                Models.loadToVAO(
                         new float[]{
                                 vps[0], vps[1], 0,
                                 vps[2], vps[3], 0,

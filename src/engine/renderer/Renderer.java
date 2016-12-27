@@ -24,9 +24,9 @@ public class Renderer {
     /**
      * The RGB values for the OpenGL background color.
      */
-    public static final float bColorR = 0.0f;
+    public static float bColorR = 0.0f;
     public static float bColorG = 0.0f;
-    public static final float bColorB = 0.0f;
+    public static float bColorB = 0.0f;
 
     /**
      * The current Model and Texture bound to the renderer.
@@ -37,9 +37,6 @@ public class Renderer {
         // Enables Transparency.
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-        GL20.glEnableVertexAttribArray(0);
-        GL20.glEnableVertexAttribArray(1);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
     }
@@ -53,6 +50,9 @@ public class Renderer {
 
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GL11.glClear(GL11.GL_ACCUM_BUFFER_BIT);
+
+        GL20.glEnableVertexAttribArray(0);
+        GL20.glEnableVertexAttribArray(1);
 
         compositeShader.start();
     }
@@ -72,6 +72,7 @@ public class Renderer {
      * @param texturedModel The TexturedModel to load.
      */
     public static void bindTexturedModel(TexturedModel texturedModel){
+
         // If the model is not already bound
         if (texturedModel.getModelID() != currentModelID) {
             GL30.glBindVertexArray(texturedModel.getModelID());

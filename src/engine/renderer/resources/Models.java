@@ -1,5 +1,7 @@
 package engine.renderer.resources;
 
+import engine.utils.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -36,6 +38,34 @@ public class Models {
         modelVertices.add(vertices);
         modelIndices.add(indices);
         size++;
+    }
+
+    /**
+     * Loads a model to a VAO.
+     *
+     * @param vertices The vertices of the model.
+     * @param indices The indices of the model.
+     * @return The index at which the Model is stored input OpenGL.
+     */
+    public static int loadToVAO(float[] vertices, int[] indices) {
+        int i = Models.contains(vertices, indices);
+        if (i == -1) {
+            float[] textures = new float[]{
+                    0, 0, 0, 1, 1, 1, 1, 0
+            };
+            int vaoID = Loader.createVAO();
+            Loader.bindIndicesBuffer(indices);
+            Loader.storeDataInAttributeList(0, 3, vertices);
+            Loader.storeDataInAttributeList(1, 2, textures);
+            Loader.unbindVAO();
+            Models.add(vertices, indices);
+            Logger.log(String.format("Loaded Model (%d vertices, %d indices) to ModelBuffer %d",
+                    vertices.length, indices.length, Models.size));
+            return vaoID;
+        } else {
+            // OpenGL's VAO and VBO IDs are not 0-based.
+            return i + 1;
+        }
     }
 
     /**
