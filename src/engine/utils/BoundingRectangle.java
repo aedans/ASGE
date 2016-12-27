@@ -13,10 +13,7 @@ public class BoundingRectangle {
     /**
      * The coordinates that make up the BoundingRectangle.
      */
-    public final float x;
-    public final float y;
-    public final float width;
-    public final float height;
+    public final float x, y, width, height;
 
     /**
      * Creates a BoundingRectangle that surrounds a Sprite.

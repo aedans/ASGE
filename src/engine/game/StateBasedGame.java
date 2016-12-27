@@ -1,15 +1,9 @@
 package engine.game;
 
-import engine.renderer.resources.Textures;
 import engine.utils.Logger;
 import engine.renderer.DisplayManager;
-import engine.renderer.resources.Loader;
 import engine.renderer.Renderer;
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
-import java.util.ArrayList;
 
 /**
  * Created by Aedan Smith.
@@ -20,9 +14,9 @@ import java.util.ArrayList;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class StateBasedGame implements Runnable {
     /**
-     * The List of GameStates for the StateBasedGame to use.
+     * The array of GameStates for the StateBasedGame to use.
      */
-    private final ArrayList<GameState> gameStates = new ArrayList<>();
+    private final GameState[] gameStates;
 
     /**
      * The ID of the active GameState.
@@ -46,11 +40,11 @@ public class StateBasedGame implements Runnable {
         }
         DisplayManager.createDisplay(xRes, yRes, fullscreen, name);
         init();
+        this.gameStates = gameStates;
         for (int i = 0; i < gameStates.length; i++) {
             gameStates[i].container = this;
             gameStates[i].index = i;
             gameStates[i].init();
-            this.gameStates.add(gameStates[i]);
         }
         Logger.log("Created game " + this);
     }
@@ -77,6 +71,7 @@ public class StateBasedGame implements Runnable {
     /**
      * Method called on game creation.
      */
+    @SuppressWarnings("EmptyMethod")
     protected void init() throws LWJGLException {
 
     }
@@ -85,7 +80,7 @@ public class StateBasedGame implements Runnable {
      * Method called on game update.
      */
     protected void update() throws Exception {
-        gameStates.get(activeGameState).update();
+        gameStates[activeGameState].update();
     }
 
     /**
@@ -100,7 +95,7 @@ public class StateBasedGame implements Runnable {
      * Method called on game render.
      */
     protected void render() throws Exception {
-        gameStates.get(activeGameState).render();
+        gameStates[activeGameState].render();
     }
 
     /**
@@ -124,6 +119,6 @@ public class StateBasedGame implements Runnable {
      * @return The new active GameState.
      */
     public GameState setActiveGameState(int index){
-        return gameStates.get(activeGameState = index);
+        return gameStates[activeGameState = index];
     }
 }

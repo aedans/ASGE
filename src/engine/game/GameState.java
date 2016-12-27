@@ -6,22 +6,24 @@ package engine.game;
  * Abstract class to be used in a StateBasedGame.
  */
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public abstract class GameState {
     /**
      * The StateBasedGame containing this GameState.
      */
+    @SuppressWarnings("unused")
     public StateBasedGame container = null;
 
     /**
-     * The index of the GameState input the container.
+     * The index of the GameState in the container.
      */
+    @SuppressWarnings("unused")
     public int index = -1;
 
     /**
      * The initialization function for the GameState.
      *
-     * All initialization functionality should be input the init function, not the constructor. The init function is called
+     * All initialization functionality should be in the init function, not the constructor. The init function is called
      * once when the StateBasedGame loads the GameState, not when the object is constructed, and should not be called by
      * the GameState constructor implementation.
      */
@@ -44,7 +46,7 @@ public abstract class GameState {
      * function is ignored.
      *
      * This function is called between the StateBasedGame beginRender and endRender functions. This function should
-     * not modify the renderer's state input any way, or unexpected errors will occur.
+     * not modify the renderer's state input any way, or unexpected errors may occur.
      */
     @SuppressWarnings("RedundantThrows")
     public abstract void render() throws Exception;

@@ -3,9 +3,6 @@ package engine.sprites;
 import engine.renderer.resources.TexturedModel;
 import engine.components.Component;
 
-import java.util.Collections;
-import java.util.LinkedList;
-
 /**
  * Created by Aedan Smith.
  *
@@ -15,9 +12,9 @@ import java.util.LinkedList;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ComponentSprite extends Sprite {
     /**
-     * The list of components that modify the ComponentSprite.
+     * The array of components that modify the ComponentSprite.
      */
-    public final LinkedList<Component<Sprite>> components = new LinkedList<>();
+    public final Component<Sprite>[] components;
 
     /**
      * Default ComponentSprite constructor.
@@ -30,7 +27,7 @@ public class ComponentSprite extends Sprite {
     @SafeVarargs
     public ComponentSprite(float x, float y, TexturedModel texturedModel, Component<Sprite>... components) {
         super(x, y, texturedModel);
-        Collections.addAll(this.components, components);
+        this.components = components;
     }
 
     @Override

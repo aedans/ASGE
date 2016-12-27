@@ -50,9 +50,7 @@ public class Main {
 
                     @Override
                     public void render() throws Exception {
-                        Renderer.beginRender();
                         sprite.render();
-                        Renderer.endRender();
                     }
                 }
         ).run();

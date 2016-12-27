@@ -12,7 +12,7 @@ import org.lwjgl.util.vector.Matrix4f;
  * Abstract class for Sprites that can be rendered by the renderer.
  */
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public abstract class Sprite implements Renderable {
     /**
      * The TexturedModel of the Sprite.
@@ -41,6 +41,8 @@ public abstract class Sprite implements Renderable {
         this.texturedModel = texturedModel;
     }
 
+    public abstract void update();
+
     /**
      * The default render function for the Sprite.
      */
@@ -57,6 +59,7 @@ public abstract class Sprite implements Renderable {
      * @param x The x amount to translate.
      * @param y The y amount to translate.
      */
+    @SuppressWarnings("unused")
     public void translate(float x, float y) {
         this.x += x;
         this.y += y;
@@ -95,9 +98,8 @@ public abstract class Sprite implements Renderable {
         return transformationMatrix;
     }
 
+    @SuppressWarnings("unused")
     public TexturedModel getTexturedModel() {
         return texturedModel;
     }
-
-    public abstract void update();
 }

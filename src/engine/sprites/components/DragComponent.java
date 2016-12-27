@@ -9,6 +9,8 @@ import org.lwjgl.input.Mouse;
 
 /**
  * Created by Aedan Smith.
+ *
+ * Class for creating draggable sprites.
  */
 
 @SuppressWarnings("unused")

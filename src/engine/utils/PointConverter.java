@@ -13,8 +13,7 @@ public final class PointConverter {
     /**
      * The factor to translate between OpenGL and Pixel Coordinate Systems.
      */
-    public static final float ppX = 1f / (float) DisplayManager.xRes;
-    public static final float ppY = 1f / (float) DisplayManager.yRes;
+    public static final float ppX = 1f / (float) DisplayManager.xRes, ppY = 1f / (float) DisplayManager.yRes;
 
     /**
      * Converts an OpenGL x coordinate to a pixel x coordinate.
@@ -52,8 +51,7 @@ public final class PointConverter {
         /**
          * The x and y of the OpenGLPoint.
          */
-        public final float x;
-        public final float y;
+        public final float x, y;
 
         public OpenGLPoint(float x, float y){
             this.x = x;
@@ -84,8 +82,7 @@ public final class PointConverter {
         /**
          * The x and y of the PixelPoint
          */
-        public final int x;
-        public final int y;
+        public final int x, y;
 
         public PixelPoint(int x, int y){
             this.x = x;
