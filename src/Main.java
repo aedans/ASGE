@@ -5,6 +5,9 @@ import engine.renderer.resources.TexturedModel;
 import engine.renderer.resources.Textures;
 import engine.sprites.Sprite;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+
 /**
  * Created by Aedan Smith.
  */
@@ -24,7 +27,10 @@ public class Main {
                                 TexturedModel.getTexturedModel(
                                         1f,
                                         1f,
-                                        Textures.loadTexture("test.png")
+                                        Textures.loadTexture(
+                                                "test",
+                                                ImageIO.read(new File("assets/imgs/test.png"))
+                                        )
                                 )
                         ){
                             @Override

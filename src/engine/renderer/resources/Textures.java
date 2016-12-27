@@ -3,11 +3,11 @@ package engine.renderer.resources;
 import engine.utils.Logger;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
+import org.newdawn.slick.util.BufferedImageUtil;
 
-import java.io.File;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -19,12 +19,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Textures {
     /**
-     * The directory of the images.
-     */
-    public static final String imageDir = "assets/imgs/";
-
-    /**
-     * The list of names of the textures.
+     * The list of names of the loaded textures.
      */
     private static final ArrayList<String> textureNames = new ArrayList<>();
 
@@ -32,13 +27,6 @@ public class Textures {
      * List of loaded textures.
      */
     private static final ArrayList<Integer> textures = new ArrayList<>();
-
-    public static void loadAllTextures() throws Exception {
-        //noinspection ConstantConditions
-        for (File file : new File(imageDir).listFiles()){
-            loadTexture(file.getName());
-        }
-    }
 
     /**
      * Returns the id of the texture with the given name.
@@ -55,48 +43,59 @@ public class Textures {
     }
 
     /**
-     * Returns the id of the texture with the given file name.
+     * Loads a BufferedImage into OpenGL.
      *
-     * @param fileName The name of the texture's file.
-     * @return The texture id.
+     * @param name The name by which to retrieve the texture.
+     * @param bufferedImage The BufferedImage to load.
+     * @return The OpenGL index of the texture.
+     * @throws Exception If there was an error loading the BufferedImage.
      */
-    @SuppressWarnings("UnusedReturnValue")
-    public static int loadTexture(String fileName) throws Exception {
-        if (!textureNames.contains(fileName)) {
-            loadTexture(
-                    fileName.substring(fileName.indexOf('.')),
-                    fileName = fileName.substring(0, fileName.indexOf('.'))
-            );
-            textureNames.add(fileName);
+    @SuppressWarnings("SameParameterValue")
+    public static int loadTexture(String name, BufferedImage bufferedImage) throws Exception {
+        if (!textureNames.contains(name)) {
+            bufferedImage = scaleToSquare(bufferedImage);
+            Texture texture = BufferedImageUtil.getTexture(name, bufferedImage);
+            textures.add(texture.getTextureID());
+            textureNames.add(name);
+            Logger.log(String.format("Loaded texture \"%s\" to TextureBuffer %d", name, texture.getTextureID()));
             return textureNames.size();
         } else {
-            throw new Exception("Texture " + fileName + " is already loaded.");
+            throw new Exception("Texture \"" + name + "\" is already loaded.");
         }
     }
 
-    /**
-     * Loads a texture.
-     *
-     * @param extension The extension for the file to load.
-     * @param fileName The name of the image to load.
-     * @return The location at which the image is stored input OpenGL.
-     * @throws IOException If the image could not be loaded.
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    public static int loadTexture(String extension, String fileName) throws IOException {
-        Texture texture = TextureLoader.getTexture(
-                extension,
-                ResourceLoader.getResourceAsStream(Textures.imageDir + fileName + extension)
+    private static BufferedImage scaleToSquare(BufferedImage bufferedImage){
+        int w = bufferedImage.getWidth(), h = bufferedImage.getHeight(), i = 1;
+        while (i < w || i < h){
+            i *= 2;
+        }
+        BufferedImage scaledImage = new BufferedImage(i, i, bufferedImage.getType());
+        scaledImage.getGraphics().drawImage(createFlipped(bufferedImage), 0, 0, i, i, null);
+        return scaledImage;
+    }
+
+    private static BufferedImage createFlipped(BufferedImage image) {
+        AffineTransform at = new AffineTransform();
+        at.scale(1, -1);
+        at.translate(0, -image.getHeight());
+        return createTransformed(image, at);
+    }
+
+    private static BufferedImage createTransformed(BufferedImage image, AffineTransform at) {
+        BufferedImage newImage = new BufferedImage(
+                image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_INT_ARGB
         );
-        int textureID = texture.getTextureID();
-        textures.add(textureID);
-        Logger.log(String.format("Loaded Texture \"%s%s\" to TextureBuffer %d", fileName, extension, textureID));
-        return textureID;
+        Graphics2D g = newImage.createGraphics();
+        g.transform(at);
+        g.drawImage(image, 0, 0, null);
+        g.dispose();
+        return newImage;
     }
 
     public static void cleanUp(){
         textures.forEach(GL11::glDeleteTextures);
-        Logger.log("Cleaned up Textures.");
+        Logger.log("Cleaned up textures.");
     }
 
     public static int getNumTextures(){
