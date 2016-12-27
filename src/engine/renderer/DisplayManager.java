@@ -1,7 +1,11 @@
 package engine.renderer;
 
+import engine.renderer.resources.Loader;
+import engine.renderer.resources.Textures;
 import engine.utils.Logger;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.*;
 
 /**
@@ -52,6 +56,9 @@ public class DisplayManager {
         Logger.log("Created display");
         Logger.log("OpenGL version " +  GL11.glGetString(GL11.GL_VERSION));
         GL11.glViewport(0, 0, xRes, yRes);
+
+        Mouse.create();
+        Keyboard.create();
     }
 
     /**
@@ -74,6 +81,11 @@ public class DisplayManager {
      * Destroys the display.
      */
     public static void closeDisplay() {
+        Renderer.cleanUp();
+        Loader.cleanUp();
+        Textures.cleanUp();
+        Mouse.destroy();
+        Keyboard.destroy();
         Display.destroy();
         Logger.log("Destroyed display");
     }

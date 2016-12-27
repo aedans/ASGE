@@ -75,6 +75,13 @@ public class StateBasedGame implements Runnable {
     }
 
     /**
+     * Method called on game creation.
+     */
+    protected void init() throws LWJGLException {
+
+    }
+
+    /**
      * Method called on game update.
      */
     protected void update() throws Exception {
@@ -104,22 +111,9 @@ public class StateBasedGame implements Runnable {
     }
 
     /**
-     * Method called on game creation.
-     */
-    protected void init() throws LWJGLException {
-        Mouse.create();
-        Keyboard.create();
-    }
-
-    /**
      * Method called on game end.
      */
     protected void cleanUp(){
-        Renderer.cleanUp();
-        Loader.cleanUp();
-        Textures.cleanUp();
-        Mouse.destroy();
-        Keyboard.destroy();
         DisplayManager.closeDisplay();
     }
 
