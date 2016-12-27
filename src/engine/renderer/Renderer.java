@@ -38,6 +38,9 @@ public class Renderer {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
+        GL20.glEnableVertexAttribArray(0);
+        GL20.glEnableVertexAttribArray(1);
+
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
     }
 
@@ -69,8 +72,6 @@ public class Renderer {
      * @param texturedModel The TexturedModel to load.
      */
     public static void bindTexturedModel(TexturedModel texturedModel){
-        GL20.glEnableVertexAttribArray(0);
-        GL20.glEnableVertexAttribArray(1);
         // If the model is not already bound
         if (texturedModel.getModelID() != currentModelID) {
             GL30.glBindVertexArray(texturedModel.getModelID());
