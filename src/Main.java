@@ -4,6 +4,9 @@ import engine.game.StateBasedGame;
 import engine.renderer.Renderer;
 import engine.renderer.resources.TexturedModel;
 import engine.renderer.resources.Textures;
+import engine.sprites.Sprite;
+import engine.utils.Updateable;
+import org.lwjgl.util.Renderable;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -17,42 +20,53 @@ public class Main {
         new StateBasedGame(
                 1080, 720, false, "Test Display",
                 new GameState(){
-                    private Entity entity;
+                    TestObject testObject;
 
                     @Override
                     public void init() throws Exception {
-                        this.entity = new Entity(
-                                0,
-                                0,
-                                TexturedModel.getTexturedModel(
-                                        1f,
-                                        1f,
-                                        Textures.loadTexture(
-                                                "test",
-                                                ImageIO.read(new File("assets/imgs/test.png"))
-                                        )
-                                )
-                        ){
-                            @Override
-                            public void update() {
-
-                            }
-                        };
+                        testObject = new TestObject();
                     }
 
                     @Override
                     public void update() throws Exception {
-                        Renderer.bColorR += 0.005f;
-                        Renderer.bColorG += 0.005f;
-                        Renderer.bColorB += 0.005f;
-                        entity.update();
+                        testObject.update();
                     }
 
                     @Override
                     public void render() throws Exception {
-                        entity.render();
+                        testObject.render();
                     }
                 }
         ).run();
+    }
+
+    private static class TestObject implements Renderable, Updateable {
+        private Sprite sprite;
+
+        TestObject() throws Exception {
+            this.sprite = new Sprite(
+                    0, 0,
+                    TexturedModel.getTexturedModel(
+                            1f,
+                            1f,
+                            Textures.loadTexture(
+                                    "test",
+                                    ImageIO.read(new File("assets/imgs/test.png"))
+                            )
+                    )
+            );
+        }
+
+        @Override
+        public void update() {
+            Renderer.bColorR += 0.005f;
+            Renderer.bColorG += 0.005f;
+            Renderer.bColorB += 0.005f;
+        }
+
+        @Override
+        public void render() {
+            sprite.render();
+        }
     }
 }

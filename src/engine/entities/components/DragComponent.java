@@ -1,9 +1,9 @@
 package engine.entities.components;
 
 import engine.components.PredicateComponent;
-import engine.input.MouseButton;
+import engine.entities.Entity;
 import engine.entities.predicates.IsHeld;
-import engine.sprites.Sprite;
+import engine.input.MouseButton;
 import engine.utils.PointConverter;
 import org.lwjgl.input.Mouse;
 
@@ -14,21 +14,21 @@ import org.lwjgl.input.Mouse;
  */
 
 @SuppressWarnings("unused")
-public class DragComponent extends PredicateComponent<Sprite> {
+public class DragComponent extends PredicateComponent<Entity> {
     public DragComponent(MouseButton toDrag) {
         super(new IsHeld(toDrag));
     }
 
     @Override
-    protected void whenTrue(Sprite sprite) {
-        sprite.setPosition(
+    protected void whenTrue(Entity entity) {
+        entity.setPosition(
                 PointConverter.convertX(Mouse.getX()),
                 PointConverter.convertY(Mouse.getY())
         );
     }
 
     @Override
-    protected void whenFalse(Sprite sprite) {
+    protected void whenFalse(Entity sprite) {
 
     }
 }

@@ -1,5 +1,6 @@
 package engine.entities.predicates;
 
+import engine.entities.Entity;
 import engine.input.MouseButton;
 import engine.sprites.Sprite;
 import org.lwjgl.input.Mouse;
@@ -13,7 +14,7 @@ import java.util.function.Predicate;
  */
 
 @SuppressWarnings("unused")
-public class IsClicked implements Predicate<Sprite> {
+public class IsClicked implements Predicate<Entity> {
     private boolean hasBeenPressed = false;
 
     /**
@@ -26,8 +27,8 @@ public class IsClicked implements Predicate<Sprite> {
     }
 
     @Override
-    public boolean test(Sprite sprite) {
-        if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testSprite(sprite)){
+    public boolean test(Entity entity) {
+        if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testEntity(entity)){
             hasBeenPressed = true;
         } else if (hasBeenPressed && !Mouse.isButtonDown(mouseButton.getId())){
             hasBeenPressed = false;

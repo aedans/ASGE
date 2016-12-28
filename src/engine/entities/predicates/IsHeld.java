@@ -1,7 +1,7 @@
 package engine.entities.predicates;
 
+import engine.entities.Entity;
 import engine.input.MouseButton;
-import engine.sprites.Sprite;
 import org.lwjgl.input.Mouse;
 
 import java.util.function.Predicate;
@@ -9,11 +9,11 @@ import java.util.function.Predicate;
 /**
  * Created by Aedan Smith.
  *
- * Predicate for testing if a Sprite is held.
+ * Predicate for testing if a Entity is held.
  */
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class IsHeld implements Predicate<Sprite> {
+public class IsHeld implements Predicate<Entity> {
     /**
      * The MouseButton to test.
      */
@@ -26,10 +26,10 @@ public class IsHeld implements Predicate<Sprite> {
     }
 
     @Override
-    public boolean test(Sprite sprite) {
+    public boolean test(Entity entity) {
         if (held){
             held = Mouse.isButtonDown(mouseButton.getId());
-        } else if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testSprite(sprite)){
+        } else if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testEntity(entity)){
             held = true;
         }
         return held;

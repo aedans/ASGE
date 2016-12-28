@@ -2,34 +2,33 @@ package engine.sprites;
 
 import engine.renderer.Renderer;
 import engine.renderer.resources.TexturedModel;
-import engine.sprites.transformations.Transformation;
 import engine.utils.MatrixMath;
 import org.lwjgl.util.Renderable;
 import org.lwjgl.util.vector.Matrix4f;
 
 /**
- * Created by Aedan Smith
+ * Created by Aedan Smith.
  */
 
 @SuppressWarnings("WeakerAccess")
 public class Sprite implements Renderable {
     /**
-     * The TexturedModel of the Entity.
+     * The TexturedModel of the Sprite.
      */
     private final TexturedModel texturedModel;
 
     /**
-     * The position of the Entity.
+     * The position of the Sprite.
      */
     private float x, y;
 
     /**
-     * The transformation matrix for the Entity.
+     * The transformation matrix for the Sprite.
      */
     private Matrix4f transformationMatrix;
 
     /**
-     * Default Entity constructor.
+     * Default Sprite constructor.
      *
      * @param x The x position of the Entity.
      * @param y The y position of the Entity.
@@ -41,34 +40,17 @@ public class Sprite implements Renderable {
     }
 
     /**
-     * The default render function for the Entity.
+     * The default render function for the Sprite.
      */
     @Override
     public void render(){
-        render(getTransformationMatrix());
-    }
-
-    /**
-     * Renders the sprite with the given transformations.
-     */
-    @SuppressWarnings("unused")
-    @SafeVarargs
-    public final void render(Transformation<Matrix4f>... transformations){
-        Matrix4f matrix4f = new Matrix4f(getTransformationMatrix());
-        for (Transformation<Matrix4f> transformation : transformations){
-            matrix4f = transformation.transform(matrix4f);
-        }
-        render(matrix4f);
-    }
-
-    public void render(Matrix4f matrix4f){
-        Renderer.compositeShader.loadTransformationMatrix(matrix4f);
+        Renderer.compositeShader.loadTransformationMatrix(getTransformationMatrix());
         Renderer.bindTexturedModel(texturedModel);
         Renderer.drawElements();
     }
 
     /**
-     * Translates the Entity.
+     * Translates the Sprite.
      *
      * @param x The x amount to translate.
      * @param y The y amount to translate.
@@ -81,7 +63,7 @@ public class Sprite implements Renderable {
     }
 
     /**
-     * Sets the position of the Entity.
+     * Sets the position of the Sprite.
      *
      * @param x The x position of the Entity.
      * @param y The y position of the Entity.

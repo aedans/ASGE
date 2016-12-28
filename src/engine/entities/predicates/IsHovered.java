@@ -1,5 +1,6 @@
 package engine.entities.predicates;
 
+import engine.entities.Entity;
 import engine.sprites.Sprite;
 import engine.utils.BoundingRectangle;
 import engine.utils.PointConverter;
@@ -12,18 +13,18 @@ import java.util.function.Predicate;
  */
 
 @SuppressWarnings("WeakerAccess")
-public class IsHovered implements Predicate<Sprite> {
+public class IsHovered implements Predicate<Entity> {
     @Override
-    public boolean test(Sprite sprite) {
-        return testSprite(sprite);
+    public boolean test(Entity entity) {
+        return testEntity(entity);
     }
 
-    public static boolean testSprite(Sprite sprite) {
+    public static boolean testEntity(Entity entity) {
         return BoundingRectangle.contains(
-                sprite.getX(),
-                sprite.getY(),
-                sprite.getWidth()/2,
-                sprite.getHeight()/2,
+                entity.getX(),
+                entity.getY(),
+                entity.getWidth()/2,
+                entity.getHeight()/2,
                 PointConverter.convertX(Mouse.getX()),
                 PointConverter.convertY(Mouse.getY())
         );
