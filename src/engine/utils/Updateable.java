@@ -5,5 +5,6 @@ package engine.utils;
  */
 
 public interface Updateable {
+    @SuppressWarnings("unused")
     void update();
 }

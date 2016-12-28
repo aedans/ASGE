@@ -1,7 +1,5 @@
 package engine.entities;
 
-import engine.utils.MatrixMath;
-
 /**
  * Created by Aedan Smith.
  *
@@ -18,7 +16,12 @@ public abstract class Entity {
     /**
      * The dimensions of the Entity.
      */
-    private float width, height;
+    private final float width, height;
+
+    /**
+     * The scale of the Entity.
+     */
+    private float xScale = 1, yScale = 1;
 
     /**
      * Default Entity constructor.
@@ -37,9 +40,6 @@ public abstract class Entity {
 
     /**
      * Translates the Entity.
-     *
-     * @param x The x amount to translate.
-     * @param y The y amount to translate.
      */
     @SuppressWarnings("unused")
     public void translate(float x, float y) {
@@ -49,13 +49,28 @@ public abstract class Entity {
 
     /**
      * Sets the position of the Entity.
-     *
-     * @param x The x position of the Entity.
-     * @param y The y position of the Entity.
      */
     public void setPosition(float x, float y) {
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * Scales the Entity by the given amount.
+     */
+    @SuppressWarnings("unused")
+    public void scale(float xScale, float yScale){
+        this.xScale *= xScale;
+        this.yScale *= yScale;
+    }
+
+    /**
+     * Sets the scale of the Entity to the given amount.
+     */
+    @SuppressWarnings("unused")
+    public void setScale(float xScale, float yScale){
+        this.xScale = xScale;
+        this.yScale = yScale;
     }
 
     public float getX() {
@@ -67,10 +82,19 @@ public abstract class Entity {
     }
 
     public float getWidth() {
-        return width;
+        return width*xScale;
     }
 
     public float getHeight() {
-        return height;
+        return height*yScale;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "("
+                + "x = " + getX() + ", "
+                + "y = " + getY() + ", "
+                + "width = " + getWidth() + ", "
+                + "height = " + getHeight() + ")";
     }
 }

@@ -8,5 +8,6 @@ package engine.components;
 
 @SuppressWarnings("WeakerAccess")
 public interface Component<T> {
+    @SuppressWarnings("unused")
     void apply(T t);
 }

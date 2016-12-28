@@ -1,7 +1,6 @@
 package engine.entities.predicates;
 
 import engine.entities.Entity;
-import engine.sprites.Sprite;
 import engine.utils.BoundingRectangle;
 import engine.utils.PointConverter;
 import org.lwjgl.input.Mouse;

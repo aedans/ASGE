@@ -8,6 +8,7 @@ import org.lwjgl.util.Renderable;
  * Created by Aedan Smith.
  */
 
+@SuppressWarnings("WeakerAccess")
 public abstract class GameObject extends Entity implements Updateable, Renderable {
     /**
      * Default GameObject constructor.
@@ -17,6 +18,7 @@ public abstract class GameObject extends Entity implements Updateable, Renderabl
      * @param width  The width of the GameObject.
      * @param height The height of the GameObject.
      */
+    @SuppressWarnings("unused")
     public GameObject(float x, float y, float width, float height) {
         super(x, y, width, height);
     }

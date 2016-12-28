@@ -1,4 +1,3 @@
-import engine.entities.Entity;
 import engine.game.GameState;
 import engine.game.StateBasedGame;
 import engine.renderer.Renderer;

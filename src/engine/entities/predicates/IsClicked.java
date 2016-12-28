@@ -2,7 +2,6 @@ package engine.entities.predicates;
 
 import engine.entities.Entity;
 import engine.input.MouseButton;
-import engine.sprites.Sprite;
 import org.lwjgl.input.Mouse;
 
 import java.util.function.Predicate;
