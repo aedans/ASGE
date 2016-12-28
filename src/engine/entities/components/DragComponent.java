@@ -10,7 +10,7 @@ import org.lwjgl.input.Mouse;
 /**
  * Created by Aedan Smith.
  *
- * Class for creating draggable Sprite.
+ * Class for creating draggable Entities.
  */
 
 @SuppressWarnings("unused")

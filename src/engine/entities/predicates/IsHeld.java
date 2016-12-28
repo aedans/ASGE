@@ -4,6 +4,7 @@ import engine.entities.Entity;
 import engine.input.MouseButton;
 import org.lwjgl.input.Mouse;
 
+import javax.swing.*;
 import java.util.function.Predicate;
 
 /**
@@ -19,7 +20,7 @@ public class IsHeld implements Predicate<Entity> {
      */
     private final MouseButton mouseButton;
 
-    private boolean held = false;
+    public static Entity held = null;
 
     public IsHeld(MouseButton mouseButton){
         this.mouseButton = mouseButton;
@@ -27,11 +28,13 @@ public class IsHeld implements Predicate<Entity> {
 
     @Override
     public boolean test(Entity entity) {
-        if (held){
-            held = Mouse.isButtonDown(mouseButton.getId());
+        if (held != null){
+            if (!Mouse.isButtonDown(mouseButton.getId())){
+                held = null;
+            }
         } else if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testEntity(entity)){
-            held = true;
+            SwingUtilities.invokeLater(() -> held = entity);
         }
-        return held;
+        return held != null && held == entity;
     }
 }
