@@ -24,14 +24,12 @@ public class Renderer {
     /**
      * The RGB values for the OpenGL background color.
      */
-    public static float bColorR = 0.0f;
-    public static float bColorG = 0.0f;
-    public static float bColorB = 0.0f;
+    public static float bColorR = 0.0f, bColorG = 0.0f, bColorB = 0.0f;
 
     /**
      * The current Model and Texture bound to the renderer.
      */
-    private static int currentModelID = -256, currentTextureID = -256;
+    private static int currentModelID, currentTextureID;
 
     static {
         // Enables Transparency.
@@ -72,7 +70,6 @@ public class Renderer {
      * @param texturedModel The TexturedModel to load.
      */
     public static void bindTexturedModel(TexturedModel texturedModel){
-
         // If the model is not already bound
         if (texturedModel.getModelID() != currentModelID) {
             GL30.glBindVertexArray(texturedModel.getModelID());

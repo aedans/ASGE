@@ -1,16 +1,16 @@
-package engine.sprites.components;
+package engine.entities.components;
 
 import engine.components.PredicateComponent;
 import engine.input.MouseButton;
+import engine.entities.predicates.IsHeld;
 import engine.sprites.Sprite;
-import engine.sprites.predicates.IsHeld;
 import engine.utils.PointConverter;
 import org.lwjgl.input.Mouse;
 
 /**
  * Created by Aedan Smith.
  *
- * Class for creating draggable sprites.
+ * Class for creating draggable Sprite.
  */
 
 @SuppressWarnings("unused")

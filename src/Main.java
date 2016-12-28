@@ -1,9 +1,9 @@
+import engine.entities.Entity;
 import engine.game.GameState;
 import engine.game.StateBasedGame;
 import engine.renderer.Renderer;
 import engine.renderer.resources.TexturedModel;
 import engine.renderer.resources.Textures;
-import engine.sprites.Sprite;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -17,11 +17,11 @@ public class Main {
         new StateBasedGame(
                 1080, 720, false, "Test Display",
                 new GameState(){
-                    private Sprite sprite;
+                    private Entity entity;
 
                     @Override
                     public void init() throws Exception {
-                        this.sprite = new Sprite(
+                        this.entity = new Entity(
                                 0,
                                 0,
                                 TexturedModel.getTexturedModel(
@@ -45,12 +45,12 @@ public class Main {
                         Renderer.bColorR += 0.005f;
                         Renderer.bColorG += 0.005f;
                         Renderer.bColorB += 0.005f;
-                        sprite.update();
+                        entity.update();
                     }
 
                     @Override
                     public void render() throws Exception {
-                        sprite.render();
+                        entity.render();
                     }
                 }
         ).run();

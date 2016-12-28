@@ -1,4 +1,4 @@
-package engine.sprites.predicates;
+package engine.entities.predicates;
 
 import engine.sprites.Sprite;
 import engine.utils.BoundingRectangle;

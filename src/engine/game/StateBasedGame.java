@@ -1,8 +1,8 @@
 package engine.game;
 
-import engine.utils.Logger;
 import engine.renderer.DisplayManager;
 import engine.renderer.Renderer;
+import engine.utils.Logger;
 import org.lwjgl.LWJGLException;
 
 /**
@@ -47,6 +47,7 @@ public class StateBasedGame implements Runnable {
             gameStates[i].init();
         }
         Logger.log("Created game " + this);
+        setActiveGameState(0);
     }
 
     /**
@@ -118,7 +119,14 @@ public class StateBasedGame implements Runnable {
      * @param index The index of the GameState to activate.
      * @return The new active GameState.
      */
+    @SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
     public GameState setActiveGameState(int index){
-        return gameStates[activeGameState = index];
+        Logger.log("Set active game state to " + gameStates[activeGameState = index]);
+        return gameStates[activeGameState];
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "(" + hashCode() + ")";
     }
 }

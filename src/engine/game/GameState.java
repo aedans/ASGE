@@ -50,4 +50,9 @@ public abstract class GameState {
      */
     @SuppressWarnings("RedundantThrows")
     public abstract void render() throws Exception;
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" + hashCode() + ")";
+    }
 }

@@ -5,7 +5,7 @@ ASGE is a simple, lightweight game engine written with LWJGL and Swift Utils, de
 
 ## List of libraries contained in ASGE:
 - Renderer: Everything needed to manage low-level texture and model data.
-- Sprites: Classes for creating easy to manipulate sprites.
+- Entities: Classes for creating easy to manipulate entities.
 - Components: Simple interfaces for creating component-based objects.
 - Game: Update/Render loop manager for multi-state games.
 - Utils: Utility classes to make common tasks easier.

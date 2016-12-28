@@ -187,4 +187,9 @@ public abstract class Shader {
      * Gets the locations of all uniform variables and stores them for later use.
      */
     protected abstract void getAllUniformLocations();
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 }

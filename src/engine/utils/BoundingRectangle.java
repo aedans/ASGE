@@ -1,6 +1,6 @@
 package engine.utils;
 
-import engine.sprites.Sprite;
+import engine.entities.Entity;
 
 /**
  * Created by Aedan Smith.
@@ -16,12 +16,12 @@ public class BoundingRectangle {
     public final float x, y, width, height;
 
     /**
-     * Creates a BoundingRectangle that surrounds a Sprite.
+     * Creates a BoundingRectangle that surrounds a Entity.
      *
-     * @param sprite The Sprite to surround.
+     * @param entity The Entity to surround.
      */
-    public BoundingRectangle(Sprite sprite){
-        this(sprite.getX(), sprite.getY(), sprite.getWidth()/2, sprite.getHeight()/2);
+    public BoundingRectangle(Entity entity){
+        this(entity.getX(), entity.getY(), entity.getWidth()/2, entity.getHeight()/2);
     }
 
     /**
@@ -67,4 +67,9 @@ public class BoundingRectangle {
 
     // TODO
     // public boolean intersects(BoundingRectangle boundingRectangle);
+
+    @Override
+    public String toString() {
+        return "BoundingRectangle(x = " + x + ", y = " + y + ", width = " + width + ", height = " + height + ")";
+    }
 }
