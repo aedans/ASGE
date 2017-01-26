@@ -27,8 +27,8 @@ public class Main {
                                 "test",
                                 ImageIO.read(new File("assets/imgs/test.png"))
                         );
-                        testObject1 = new TestObject(.3f, .3f);
-                        testObject2 = new TestObject(.1f, .1f);
+                        testObject1 = new TestObject(.6f, .6f);
+                        testObject2 = new TestObject(.3f, .3f);
                     }
 
                     @Override
