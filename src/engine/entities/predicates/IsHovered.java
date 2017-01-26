@@ -12,9 +12,9 @@ import java.util.function.Predicate;
  */
 
 @SuppressWarnings("WeakerAccess")
-public class IsHovered implements Predicate<Entity> {
+public class IsHovered<T extends Entity> implements Predicate<T> {
     @Override
-    public boolean test(Entity entity) {
+    public boolean test(T entity) {
         return testEntity(entity);
     }
 

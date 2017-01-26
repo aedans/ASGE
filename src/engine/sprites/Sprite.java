@@ -137,6 +137,10 @@ public class Sprite implements Renderable {
         return transformationMatrix;
     }
 
+    public void setTransformationMatrix(Matrix4f transformationMatrix) {
+        this.transformationMatrix = transformationMatrix;
+    }
+
     @SuppressWarnings("unused")
     public TexturedModel getTexturedModel() {
         return texturedModel;

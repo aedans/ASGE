@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  */
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class IsHeld implements Predicate<Entity> {
+public class IsHeld<T extends Entity> implements Predicate<T> {
     /**
      * The MouseButton to test.
      */
@@ -27,7 +27,7 @@ public class IsHeld implements Predicate<Entity> {
     }
 
     @Override
-    public boolean test(Entity entity) {
+    public boolean test(T entity) {
         if (held != null){
             if (!Mouse.isButtonDown(mouseButton.getId())){
                 held = null;

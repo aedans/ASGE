@@ -49,9 +49,6 @@ public class Renderer {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GL11.glClear(GL11.GL_ACCUM_BUFFER_BIT);
 
-        GL20.glEnableVertexAttribArray(0);
-        GL20.glEnableVertexAttribArray(1);
-
         compositeShader.start();
     }
 
@@ -72,6 +69,8 @@ public class Renderer {
     public static void bindTexturedModel(TexturedModel texturedModel){
         // If the model is not already bound
         if (texturedModel.getModelID() != currentModelID) {
+            GL20.glEnableVertexAttribArray(0);
+            GL20.glEnableVertexAttribArray(1);
             GL30.glBindVertexArray(texturedModel.getModelID());
             currentModelID = texturedModel.getModelID();
         }

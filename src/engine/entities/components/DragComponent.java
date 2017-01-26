@@ -14,13 +14,13 @@ import org.lwjgl.input.Mouse;
  */
 
 @SuppressWarnings("unused")
-public class DragComponent extends PredicateComponent<Entity> {
+public class DragComponent<T extends Entity> extends PredicateComponent<T> {
     public DragComponent(MouseButton toDrag) {
-        super(new IsHeld(toDrag));
+        super(new IsHeld<>(toDrag));
     }
 
     @Override
-    protected void whenTrue(Entity entity) {
+    protected void whenTrue(T entity) {
         entity.setPosition(
                 PointConverter.convertX(Mouse.getX()),
                 PointConverter.convertY(Mouse.getY())
@@ -28,7 +28,7 @@ public class DragComponent extends PredicateComponent<Entity> {
     }
 
     @Override
-    protected void whenFalse(Entity sprite) {
+    protected void whenFalse(T entity) {
 
     }
 }

@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  */
 
 @SuppressWarnings("unused")
-public class IsClicked implements Predicate<Entity> {
+public class IsClicked<T extends Entity> implements Predicate<T> {
     private boolean hasBeenPressed = false;
 
     /**
@@ -26,7 +26,7 @@ public class IsClicked implements Predicate<Entity> {
     }
 
     @Override
-    public boolean test(Entity entity) {
+    public boolean test(T entity) {
         if (Mouse.isButtonDown(mouseButton.getId()) && IsHovered.testEntity(entity)){
             hasBeenPressed = true;
         } else if (hasBeenPressed && !Mouse.isButtonDown(mouseButton.getId())){
