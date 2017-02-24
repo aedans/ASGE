@@ -9,14 +9,10 @@ import org.lwjgl.util.vector.Matrix4f;
  */
 
 public class CompositeShader extends Shader {
-    private static final String SHADER_PATH = "assets/shaders/composite/";
-    private static final String VERTEX_FILE = SHADER_PATH + "composite.vsh";
-    private static final String FRAGMENT_FILE = SHADER_PATH + "composite.fsh";
-
     private int transformationMatrixLocation;
 
-    public CompositeShader() {
-        super(VERTEX_FILE, FRAGMENT_FILE);
+    public CompositeShader(String vertexFile, String fragmentFile) {
+        super(vertexFile, fragmentFile);
     }
 
     @Override

@@ -2,6 +2,7 @@ package engine.game;
 
 import engine.renderer.DisplayManager;
 import engine.renderer.Renderer;
+import engine.renderer.shaders.CompositeShader;
 import engine.utils.Logger;
 import org.lwjgl.LWJGLException;
 
@@ -22,6 +23,11 @@ public class StateBasedGame implements Runnable {
      * The ID of the active GameState.
      */
     private int activeGameState = 0;
+
+    /**
+     * The path of the StateBasedGame's shaders.
+     */
+    protected String shaderPath = "assets/shaders/";
 
     /**
      * The default StateBasedGame constructor. The game begins on the fist GameState passed input.
@@ -74,7 +80,10 @@ public class StateBasedGame implements Runnable {
      */
     @SuppressWarnings("EmptyMethod")
     protected void init() throws LWJGLException {
-
+        Renderer.init(new CompositeShader(
+                shaderPath + "composite.vsh",
+                shaderPath + "composite.fsh"
+        ));
     }
 
     /**
@@ -123,6 +132,10 @@ public class StateBasedGame implements Runnable {
     public GameState setActiveGameState(int index){
         Logger.log("Set active game state to " + gameStates[activeGameState = index]);
         return gameStates[activeGameState];
+    }
+
+    public int getActiveGameState() {
+        return activeGameState;
     }
 
     @Override

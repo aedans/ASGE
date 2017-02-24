@@ -16,7 +16,7 @@ import java.nio.FloatBuffer;
  * Created by Aedan Smith.
  */
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public abstract class Shader {
     /**
      * The FloatBuffer to be loaded into the TransformationMatrix.

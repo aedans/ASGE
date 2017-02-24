@@ -34,6 +34,7 @@ public class Textures {
      * @param textureName The name of the texture.
      * @return The texture ID.
      */
+    @SuppressWarnings("SameParameterValue")
     public static int getTexture(String textureName){
         if (textureName.contains(textureName)) {
             return textureNames.indexOf(textureName)+1;

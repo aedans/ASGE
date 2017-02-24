@@ -19,7 +19,7 @@ public class Renderer {
     /**
      * The Composite Shader for the renderer to use.
      */
-    public static final CompositeShader compositeShader = new CompositeShader();
+    public static CompositeShader compositeShader;
 
     /**
      * The RGB values for the OpenGL background color.
@@ -31,7 +31,9 @@ public class Renderer {
      */
     private static int currentModelID, currentTextureID;
 
-    static {
+    public static void init(CompositeShader compositeShader) {
+        Renderer.compositeShader = compositeShader;
+
         // Enables Transparency.
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
